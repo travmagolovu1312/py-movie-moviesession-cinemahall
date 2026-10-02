@@ -5,16 +5,16 @@ def get_movies(genres_ids=None, actors_ids=None):
     movies = Movie.objects.all()
     if genres_ids and actors_ids:
         return movies.filter(
-            genre__id__in=genres_ids,
-            actor__id__in=actors_ids
+            genres__id__in=genres_ids,
+            actors__id__in=actors_ids
         ).distinct()
     elif genres_ids:
         return movies.filter(
-            genre__id__in=genres_ids
+            genres__id__in=genres_ids
         ).distinct()
     elif actors_ids:
         return movies.filter(
-            actor__id__in=actors_ids
+            actors__id__in=actors_ids
         ).distinct()
     return movies
 
