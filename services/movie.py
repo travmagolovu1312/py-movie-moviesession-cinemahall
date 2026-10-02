@@ -1,20 +1,20 @@
 from db.models import Movie
 
 
-def get_movie(genres_ids=None, actors_ids=None):
+def get_movies(genres_ids=None, actors_ids=None):
     movies = Movie.objects.all()
     if genres_ids and actors_ids:
         return movies.filter(
-            genre_id__in=genres_ids,
-            actor_id__in=actors_ids
+            genre__id__in=genres_ids,
+            actor__id__in=actors_ids
         ).distinct()
     elif genres_ids:
         return movies.filter(
-            genre_id__in=genres_ids
+            genre__id__in=genres_ids
         ).distinct()
     elif actors_ids:
         return movies.filter(
-            actor_id__in=actors_ids
+            actor__id__in=actors_ids
         ).distinct()
     return movies
 
